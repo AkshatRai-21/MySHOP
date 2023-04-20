@@ -92,8 +92,7 @@ class Products with ChangeNotifier {
   Future<void> fetchAndSetProducts([bool filterByUser = false]) async {
     var FilterString =
         filterByUser ? 'orderBy="creatorId"&equalTo="$userId"' : '';
-    var url = Uri.parse(
-        'https://shop-953-default-rtdb.firebaseio.com/products.json?auth=$authToken&$FilterString');
+    var url = Uri.parse('');
 
     try {
       final response = await http.get(url);
@@ -101,8 +100,7 @@ class Products with ChangeNotifier {
       if (extractedData == null) {
         return;
       }
-      url = Uri.parse(
-          'https://shop-953-default-rtdb.firebaseio.com/userFavorites/$userId.json?auth=$authToken');
+      url = Uri.parse('');
       final favoriteResponse = await http.get(url);
       final favoriteData = json.decode(favoriteResponse.body);
       final List<Product> loadedProducts = [];
@@ -126,8 +124,7 @@ class Products with ChangeNotifier {
   }
 
   Future<void> addProduct(Product product) async {
-    final url = Uri.parse(
-        'https://shop-953-default-rtdb.firebaseio.com/products.json?auth=$authToken');
+    final url = Uri.parse('');
 
     try {
       final response = await http.post(url,
@@ -168,8 +165,7 @@ class Products with ChangeNotifier {
   Future<void> updateProduct(String id, Product newProduct) async {
     final prodIndex = _items.indexWhere((prod) => prod.id == id);
     if (prodIndex >= 0) {
-      final url = Uri.parse(
-          'https://shop-953-default-rtdb.firebaseio.com/products/$id.json?auth=$authToken');
+      final url = Uri.parse('');
       await http.patch(url,
           body: json.encode({
             'title': newProduct.title,
@@ -186,8 +182,7 @@ class Products with ChangeNotifier {
   }
 
   Future<void> deleteProduct(String id) async {
-    final url = Uri.parse(
-        'https://shop-953-default-rtdb.firebaseio.com/products/$id.json?auth=$authToken');
+    final url = Uri.parse('');
     final existingProductIndex = _items.indexWhere((prod) => prod.id == id);
     var existingProduct = _items[existingProductIndex];
     _items.removeAt(existingProductIndex);

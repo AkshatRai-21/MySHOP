@@ -31,8 +31,7 @@ class Product with ChangeNotifier {
     final oldStatus = isFavorite;
     isFavorite = !isFavorite;
     notifyListeners();
-    final url = Uri.parse(
-        'https://shop-953-default-rtdb.firebaseio.com/userFavorites/$userId/$id.json?auth=$authToken');
+    final url = Uri.parse('');
     try {
       final response = await http.put(
         url,
