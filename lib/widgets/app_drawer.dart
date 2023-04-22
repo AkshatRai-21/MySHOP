@@ -13,9 +13,6 @@ class AppDrawer extends StatelessWidget {
         children: [
           AppBar(
             title: Text('Hello Friends!'),
-
-            //It simply means it will never add a back button
-            //here
             automaticallyImplyLeading: false,
           ),
           Divider(),
@@ -30,10 +27,6 @@ class AppDrawer extends StatelessWidget {
             leading: Icon(Icons.payment),
             title: Text('Orders'),
             onTap: () {
-              //Custom Route
-              // Navigator.of(context).pushReplacement(CustomRoute(
-              //   builder: (ctx) => OrderScreen(),
-              // ));
               Navigator.of(context).pushReplacementNamed(OrderScreen.routeName);
             },
           ),

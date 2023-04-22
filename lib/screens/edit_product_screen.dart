@@ -16,9 +16,6 @@ class _EditProductScreenState extends State<EditProductScreen> {
   final _imageUrlController = TextEditingController();
   final _imageUrlFocusNode = FocusNode();
 
-  // G L O B A L    KEY
-  //So the global key will allow us to interact with the state behind
-  //the form widget
   final _form = GlobalKey<FormState>();
 
   var _editedProduct = Product(
@@ -57,10 +54,6 @@ class _EditProductScreenState extends State<EditProductScreen> {
           'title': _editedProduct.title,
           'description': _editedProduct.description,
           'price': _editedProduct.price.toString(),
-          // if you have a controller you can't set the initial
-          //value instead then you set the controller to
-          //it's initial value
-          // 'imageUrl':_editedProduct.imageUrl,
           'imageUrl': '',
         };
         _imageUrlController.text = _editedProduct.imageUrl;
@@ -98,7 +91,6 @@ class _EditProductScreenState extends State<EditProductScreen> {
   }
 
   Future<void> _saveForm() async {
-    //This will trigger all the validators
     final isValid = _form.currentState!.validate();
     if (!isValid) {
       return;
@@ -122,9 +114,6 @@ class _EditProductScreenState extends State<EditProductScreen> {
           builder: (ctx) => AlertDialog(
             title: Text('An error Occured!'),
             content: Text('Something went wrong'),
-            // content: Text(error.toString()),
-            //toString() on error objects are specifically configurred
-            //to simply print a readable error message
             actions: [
               TextButton(
                 onPressed: () {
@@ -135,25 +124,12 @@ class _EditProductScreenState extends State<EditProductScreen> {
             ],
           ),
         );
-      } //finally {
-      //   setState(() {
-      //     _isLoading = false;
-      //   });
-      //   Navigator.of(context).pop();
+      }
     }
     setState(() {
       _isLoading = false;
     });
     Navigator.of(context).pop();
-
-    //SaveForm will now trigger a method on every TextFormField which
-    //allows you to take the value entered in TextFormField and do
-    // whatever you want to do with it
-
-    // Provider.of<Products>(context, listen: false).addProduct(_editedProduct);
-
-    //This will go back to the previous page which shows all products
-    // Navigator.of(context).pop();
   }
 
   @override
@@ -185,7 +161,6 @@ class _EditProductScreenState extends State<EditProductScreen> {
                       onFieldSubmitted: (_) {
                         FocusScope.of(context).requestFocus(_priceFocusNode);
                       },
-
                       validator: (value) {
                         if (value!.isEmpty) {
                           return 'Please provide a value.';
@@ -193,15 +168,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
 
                         return null;
                       },
-
-                      //It takes the value that is currently entered into
-                      //TextFormField and then you can do whatever you want
-                      //with that value
                       onSaved: (value) {
-                        //We have created new product here because we have
-                        //initialized product parameters like id,title,
-                        //with final which can't be changed after creating a
-                        //new object ,so we are creating new product object
                         _editedProduct = Product(
                           id: _editedProduct.id,
                           isFavorite: _editedProduct.isFavorite,
@@ -212,7 +179,6 @@ class _EditProductScreenState extends State<EditProductScreen> {
                         );
                       },
                     ),
-
                     TextFormField(
                       initialValue: _initValues['price'],
                       decoration: InputDecoration(labelText: 'Price'),
@@ -275,11 +241,6 @@ class _EditProductScreenState extends State<EditProductScreen> {
                         );
                       },
                     ),
-
-                    //In form you are not restricted to just having TextFormField
-                    //,you can use any widget you want ,form then just works
-                    //together with TextFormField ,it ignores other widget
-                    //therefore here we can add Row
                     Row(
                       children: [
                         Container(
@@ -305,36 +266,16 @@ class _EditProductScreenState extends State<EditProductScreen> {
                                       width: 1.5,
                                     ),
                                   )),
-                        // TextFormField by default takes as much width as it can
-                        //get and the problem is that if that is inside a row,
-                        //a row has an unconstrained width
-                        //So normally the boundaries of the device width are the
-                        //boundaries of the TextFormField but the Row doesnot have/
-                        //take these boundaries ,it doesnot have the device width
-                        //as an internal boundary so the TextFormField tries to take
-                        //an infinte amount of width
-
-                        //So to solve this issue we have wrapped up this
-                        //TextFormField with Expaned Widget here
                         Expanded(
                           child: TextFormField(
-                            // if you have a controller you can't set the initial
-                            //value instead then you set the controller to
-                            //it's initial value
                             decoration: InputDecoration(labelText: 'Image URL'),
                             keyboardType: TextInputType.url,
                             textInputAction: TextInputAction.done,
-                            //We have defined  a TextEditingController for this
-                            //TextFormField because we want to get the imageUrl
-                            //to display the preview
                             controller: _imageUrlController,
-                            //To get the image preview when we loose
-                            //focus from urlField
                             focusNode: _imageUrlFocusNode,
                             onFieldSubmitted: (context) {
                               _saveForm();
                             },
-
                             validator: (value) {
                               if (value!.isEmpty) {
                                 return 'Please enter an image URL.';
@@ -353,7 +294,6 @@ class _EditProductScreenState extends State<EditProductScreen> {
 
                               return null;
                             },
-
                             onSaved: (value) {
                               _editedProduct = Product(
                                 isFavorite: _editedProduct.isFavorite,

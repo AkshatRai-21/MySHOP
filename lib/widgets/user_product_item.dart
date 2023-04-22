@@ -38,20 +38,6 @@ class UserProductItem extends StatelessWidget {
                   await Provider.of<Products>(context, listen: false)
                       .deleteProduct(id!);
                 } catch (error) {
-                  // ScaffoldMessenger.of(context).showSnackBar(
-                  //   SnackBar(content: Text('Deleting failed!')),
-                  // );
-
-                  //Basically the problem here with ScaffoldMessenger.of(context)
-                  //is here we are doing it inside of a future because async
-                  //is used and therefore everything is wrapped inside future
-                  //therefore of(context) can't be resolved anymore due to
-                  //how flutter works internally
-                  //
-                  //It's already updating widget tree at this point of time and
-                  //here it is not sure that the context refers to the same
-                  //context as it was referring to before
-
                   scaffold.showSnackBar(
                     SnackBar(
                         content: Text(

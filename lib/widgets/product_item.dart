@@ -36,9 +36,6 @@ class _ProductItemState extends State<ProductItem> {
               fit: BoxFit.cover,
             ),
           )),
-      // child: Image.network(
-      //   product.imageUrl,
-      //   fit: BoxFit.cover,
     );
 
     footer:
@@ -60,32 +57,6 @@ class _ProductItemState extends State<ProductItem> {
             },
           ),
         ),
-        // leading: IconButton(
-        //   icon: Icon(
-        //     product.isFavorite ? Icons.favorite : Icons.favorite_border,
-        //   ),
-        //   color: Theme.of(context).accentColor,
-        //   onPressed: () {
-        //     product.toggleFavoriteStatus();
-        //     _toggleForm();
-
-        //   },
-        // ),
-        //Consumer can be used to rebuild parts of the widget tree
-        //instead of the entire widget tree
-        // leading: Consumer<Product>(
-        //   builder: (ctx, product, child) => IconButton(
-        //     onPressed: () {
-        //       product.toggleFavoritesStatus();
-        //     },
-        //     icon: Icon(
-        //       product.isFavorite ? Icons.favorite : Icons.favorite_border,
-        //     ),
-        //     color: Theme.of(context).accentColor,
-        //   ),
-        //   //child value doesnot rebuild generally when you consumer rebuilds
-        //   child: Text('Never Changes!'),
-        // ),
         title: Text(
           product.title,
           textAlign: TextAlign.center,
@@ -93,8 +64,7 @@ class _ProductItemState extends State<ProductItem> {
         trailing: IconButton(
           onPressed: () {
             cart.addItem(product.id!, product.price, product.title);
-            // If there is snackbar already this willbe hidden
-            // before the new one is shown
+
             ScaffoldMessenger.of(context).hideCurrentSnackBar();
             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
               content: Text(
