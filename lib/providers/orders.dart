@@ -31,32 +31,12 @@ class Orders with ChangeNotifier {
 
   Orders(this.authToken, this.userId, this._orders);
 
-  // void addOrder(List<CartItem> cartProducts, double total) {
-  //   //Add will always add at the end of the list but with insert 0
-  //   //we add it at the beginning of the list
-  //   //More recent orders are the now will come on the beginning of
-  //   //list
-  //   _orders.insert(
-  //     0,
-  //     OrderItem(
-  //       id: DateTime.now().toString(),
-  //       amount: total,
-  //       products: cartProducts,
-  //       dateTime: DateTime.now(),
-  //     ),
-  //   );
-
-  //   notifyListeners();
-  // }
-
   Future<void> fetchAndSetOrders() async {
     final url = Uri.parse('');
     final response = await http.get(url);
     final List<OrderItem> loadedOrders = [];
     final extractedData = json.decode(response.body) as Map<String, dynamic>;
-    // if (extractedData == null) {
-    //   return;
-    // }
+
     extractedData.forEach((orderId, orderData) {
       loadedOrders.add(
         OrderItem(
@@ -81,8 +61,7 @@ class Orders with ChangeNotifier {
   }
 
   Future<void> addOrder(List<CartItem> cartProducts, double total) async {
-    final url = Uri.parse(
-        'https://shop-953-default-rtdb.firebaseio.com/orders/$userId.json?auth=$authToken');
+    final url = Uri.parse('');
     final timestamp = DateTime.now();
     final response = await http.post(
       url,
@@ -112,26 +91,4 @@ class Orders with ChangeNotifier {
 
     notifyListeners();
   }
-  // try {
-  //   final response = await http.post(url,
-  //       body: jsonEncode({
-  //         'id': DateTime.now().toString(),
-  //         'amount': total,
-  //         'products': cartProducts,
-  //         'dateTime': DateTime.now(),
-  //       }));
-
-  // final newProduct = Product(
-  //   id: json.decode(response.body)['name'],
-  //   title: product.title,
-  //   description: product.description,
-  //   price: product.price,
-  //   imageUrl: product.imageUrl,
-  //   );
-  //   _items.add(newProduct);
-  //   notifyListeners();
-  // } catch (error) {
-  //   print(error);
-  //   throw error;
-  // }
 }

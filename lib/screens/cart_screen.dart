@@ -41,11 +41,6 @@ class CartScreen extends StatelessWidget {
               ),
             ),
           ),
-
-          //ListView directly inside the column would not work but we have
-          //to wrap it in expanded widget which ensures that we take as
-          //much as space left in this column instead of as much space
-          //as you can get
           Expanded(
             child: ListView.builder(
               itemCount: cart.items.length,
