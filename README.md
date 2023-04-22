@@ -1,16 +1,43 @@
-# shopapp
+# Shop App
 
-A new Flutter project.
+This is a Flutter app that utilizes Firebase Realtime Database and Firebase Storage to allow users to manage and share product data in real-time. 
 
-## Getting Started
+The app allows users to create an account and login using Firebase Authentication. Once logged in, users can create, edit, and manage products by filling out user input forms. The app also includes animations to provide a smooth and engaging user experience.
 
-This project is a starting point for a Flutter application.
+## Features
 
-A few resources to get you started if this is your first Flutter project:
+- User authentication
+- Real-time data storage and retrieval using Firebase Realtime Database
+- Shared product database that allows products added by one user to be viewed by other users of the app
+- Ability to upload and retrieve files associated with products using Firebase Storage
+- Animations for a smooth and engaging user experience
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Requirements
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- Flutter 2.0 or newer
+- Android SDK version 21 or newer
+- iOS 9.0 or newer
+- Firebase account and project setup
+
+## Setup
+
+1. Clone this repository
+2. Setup a Firebase project and enable Firebase Authentication, Firebase Realtime Database, and Firebase Storage
+3. Download the `google-services.json` and `GoogleService-Info.plist` configuration files from Firebase and place them in the `android/app` and `ios/Runner` directories respectively
+4. Run the following command to install dependencies: 
+
+   ```
+   flutter pub get
+   ```
+
+5. Run the app using:
+
+   ```
+   flutter run
+   ```
+
+
+
+## Credits
+
+This app was developed by Akshat Rai. If you have any questions or suggestions, please contact me at raiakshat007@gmail.com.
