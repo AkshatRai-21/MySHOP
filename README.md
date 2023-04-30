@@ -1,4 +1,4 @@
-# Shop App
+# My SHOP
 
 This is a Flutter app that utilizes Firebase Realtime Database and Firebase Storage to allow users to manage and share product data in real-time. 
 
